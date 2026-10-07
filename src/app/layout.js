@@ -23,17 +23,30 @@ export default function RootLayout({ children }) {
         <main className="w-full max-w-7xl mx-auto flex-1">
           {children}
         </main>
-        <footer className="w-full border-t border-[#2f3336]/60 py-6 px-4 mt-8 bg-[#0a0a0c]/80 backdrop-blur-sm text-center">
-          <div className="max-w-3xl mx-auto space-y-2">
-            <div className="flex items-center justify-center gap-2 text-xs font-bold text-[#a0a5a9] font-mono uppercase tracking-wider">
+        <footer className="w-full border-t border-[#2f3336]/60 py-8 px-4 mt-12 bg-[#0a0a0c]/90 backdrop-blur-md">
+          <div className="max-w-4xl mx-auto space-y-3.5">
+            <div className="flex items-center justify-center gap-2 text-xs font-bold text-white font-mono uppercase tracking-wider">
               <span>⚖️</span>
-              <span>Yasal Bilgilendirme & Sorumluluk Reddi</span>
+              <span>Yasal Bilgilendirme, Hukuki Beyan & Sorumluluk Reddi</span>
             </div>
-            <p className="text-[11px] leading-relaxed text-[#71767b]">
-              Bu platform, yalnızca arkadaşlar arasında eğlence ve rekabet amacıyla tasarlanmış kâr amacı gütmeyen sanal bir tahmin oyunudur. Sitede kesinlikle <strong className="text-[#a0a5a9]">gerçek para yatırma, para çekme, bakiye satışı veya nakit kazanç sağlama gibi hiçbir finansal işlem bulunmamaktadır</strong>. Sistemde kullanılan tüm puanlar, kuponlar ve sıralamalar tamamen oyun içi sanal simülasyon niteliğindedir; kumar veya bahis faaliyeti teşkil etmez.
-            </p>
-            <div className="text-[10px] text-[#53575b] font-mono">
-              © 2026 Skaledler Ligi • Yalnızca Arkadaşlar Arası Eğlence Amaçlıdır
+
+            <div className="text-[11px] leading-relaxed text-[#71767b] space-y-2 bg-black/60 p-4 rounded-xl border border-[#2f3336]/60">
+              <p>
+                <strong className="text-gray-300">1. Platformun Mahiyeti ve Sanal OSM Ligi:</strong> Bu platform, bağımsız bir arkadaş topluluğunun <strong>Online Soccer Manager (OSM)</strong> mobil futbol oyunu üzerinde kurmuş olduğu özel sanal ligin maç simülasyonlarını eğlenceli hale getirmek amacıyla tasarlanmış, kâr amacı gütmeyen sanal bir tahmin ve istatistik oyunudur.
+              </p>
+              <p>
+                <strong className="text-gray-300">2. Finansal İşlem ve Maddi Değer Yokluğu:</strong> Sitede kesinlikle <strong className="text-white">gerçek para yatırma, para çekme, bakiye satın alma, nakit ödül veya herhangi bir finansal menfaat elde etme unsuru bulunmamaktadır</strong>. Sistemde kullanılan "Puan", "Kupon", "Oran" ve "Bakiye" gibi terimler tamamen oyun içi sanal skor niteliğinde olup, hiçbir parasal ya da maddi değere sahip değildir; nakde veya eşyaya dönüştürülemez, devredilemez veya satılamaz.
+              </p>
+              <p>
+                <strong className="text-gray-300">3. Yasal Dayanak (7258 Sayılı Kanun & TCK m. 228 Kapsamı):</strong> Platform gerçek dünya spor müsabakalarına dayalı bir bahis platformu olmayıp, 7258 sayılı Futbol ve Diğer Spor Müsabakalarında Bahis ve Şans Oyunları Düzenlenmesi Hakkında Kanun veya Türk Ceza Kanunu Madde 228 kapsamında herhangi bir kumar, yasadışı bahis veya şans oyunu faaliyeti teşkil etmez.
+              </p>
+              <p className="text-[10px] text-[#53575b] pt-1.5 border-t border-[#2f3336]/40">
+                Online Soccer Manager (OSM) ticari markası ve telif hakları Gamebasics BV / Miniclip şirketine aittir. Bu site kâr amacı gütmeyen bağımsız bir arkadaş topluluğu projesidir ve OSM ile herhangi bir resmi bağı veya sponsorluğu bulunmamaktadır.
+              </p>
+            </div>
+
+            <div className="text-[10px] text-[#53575b] font-mono text-center">
+              © 2026 Skaledler Ligi • Yalnızca Arkadaşlar Arası Sanal OSM Simülasyonu & Eğlence Amaçlıdır
             </div>
           </div>
         </footer>

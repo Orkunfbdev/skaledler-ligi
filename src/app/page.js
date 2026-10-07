@@ -830,7 +830,7 @@ export default function Home() {
             </div>
 
             <p className="text-[11px] text-[#71767b] text-center max-w-xs mt-3 leading-normal">
-              🎮 Bu platform arkadaşlar arası eğlence amaçlı bir tahmin ligidir. Gerçek para yatırma veya çekme kesinlikle yoktur.
+              🎮 Bu platform arkadaşlar arası OSM (Online Soccer Manager) ligi simülasyonudur. Gerçek para yatırma veya çekme kesinlikle yoktur; sadece sanal oyun içi puanlar geçerlidir.
             </p>
           </div>
         </div>
