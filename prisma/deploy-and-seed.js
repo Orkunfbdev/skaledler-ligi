@@ -1,7 +1,15 @@
 const { execSync } = require('child_process');
 
 async function run() {
-  const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL;
+  let dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL || process.env.STORAGE_URL || process.env.STORAGE_DATABASE_URL || process.env.STORAGE_POSTGRES_URL;
+  if (!dbUrl) {
+    for (const [key, value] of Object.entries(process.env)) {
+      if (value && typeof value === 'string' && (value.startsWith('postgres://') || value.startsWith('postgresql://'))) {
+        dbUrl = value;
+        break;
+      }
+    }
+  }
   if (!dbUrl) {
     console.log('Veritabanı adresi (DATABASE_URL veya Vercel Postgres) bulunamadı, kurulum adımı atlanıyor.');
     return;
