@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 import { api } from '../lib/client';
+import { isPredictionsLocked, getPredictionStatusLabel } from '../lib/match-lock';
 import Link from 'next/link';
 
 const getOSMMatchDayKey = () => {
@@ -32,6 +33,7 @@ export default function Home() {
   const [allQuotes, setAllQuotes] = useState([]);
   const [newQuote, setNewQuote] = useState('');
   const [hasPostedToday, setHasPostedToday] = useState(false);
+  const [leagueSettings, setLeagueSettings] = useState(null);
   const [isLocked, setIsLocked] = useState(false);
   const [activeTab, setActiveTab] = useState('bulten');
   const [couponSubTab, setCouponSubTab] = useState('my');
@@ -109,20 +111,24 @@ export default function Home() {
     const checkLockStatus = () => {
       const now = new Date();
       setCurrentTimeStr(now.toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul' }));
-      const trHour = parseInt(
-        new Intl.DateTimeFormat('tr-TR', {
-          timeZone: 'Europe/Istanbul',
-          hour: 'numeric',
-          hour12: false,
-        }).format(now),
-        10
-      );
-      setIsLocked(trHour >= 18);
+      setIsLocked(isPredictionsLocked(leagueSettings));
     };
 
     checkLockStatus();
     const timer = setInterval(checkLockStatus, 1000);
     return () => clearInterval(timer);
+  }, [leagueSettings]);
+
+  // Periyodik olarak league_settings'i sorgula (Yönetici açtığında anında yansıması için)
+  useEffect(() => {
+    const syncSettings = async () => {
+      const { data: setts } = await api.from('league_settings').select('*').eq('id', 1).single();
+      if (setts) {
+        setLeagueSettings(setts);
+      }
+    };
+    const syncTimer = setInterval(syncSettings, 10000);
+    return () => clearInterval(syncTimer);
   }, []);
 
   useEffect(() => {
@@ -174,9 +180,12 @@ export default function Home() {
   const fetchData = async () => {
     let activeW = 3;
     const { data: setts } = await api.from('league_settings').select('*').eq('id', 1).single();
-    if (setts?.active_matchday) {
-      activeW = Number(setts.active_matchday);
-      setCurrentWeek(activeW);
+    if (setts) {
+      setLeagueSettings(setts);
+      if (setts.active_matchday) {
+        activeW = Number(setts.active_matchday);
+        setCurrentWeek(activeW);
+      }
     }
 
     // Aktif Haftanın Maçları
@@ -331,7 +340,7 @@ export default function Home() {
 
   const handleSelectPrediction = (matchId, prediction, odds, matchObj) => {
     if (isLocked && !profile?.is_admin) {
-      alert('Maç saati nedeniyle saat 18:00 itibarıyla öngörüler kilitlidir.');
+      alert('Günün maçları için öngörüler kapalıdır.');
       return;
     }
 
@@ -357,7 +366,7 @@ export default function Home() {
   // Tekli Öngörü Onaylama
   const handleConfirmSingleBet = async (matchId) => {
     if (isLocked && !profile?.is_admin) {
-      alert('Öngörüler kapalıdır (Saat 18:00 itibarıyla kapanır).');
+      alert('Günün maçları için öngörüler kapalıdır.');
       return;
     }
 
@@ -401,7 +410,7 @@ export default function Home() {
   // Kombine Öngörü Onaylama (Tüm Seçilen Maçları Birleştirme)
   const handleConfirmComboBet = async () => {
     if (isLocked && !profile?.is_admin) {
-      alert('Öngörüler kapalıdır (Saat 18:00 itibarıyla kapanır).');
+      alert('Günün maçları için öngörüler kapalıdır.');
       return;
     }
 
@@ -904,7 +913,7 @@ export default function Home() {
                 </div>
 
                 <span className={`px-2.5 py-1 rounded-full font-mono text-[10px] uppercase border font-bold ${isLocked ? 'bg-red-950/50 border-red-800 text-red-400' : 'bg-emerald-950/50 border-emerald-800 text-emerald-400'}`}>
-                  {isLocked ? 'Öngörüler Kapalı (Saat 18:00 Kapanışı)' : 'Öngörüler Açık (18:00\'e Kadar)'}
+                  {getPredictionStatusLabel(leagueSettings)}
                 </span>
               </div>
 
@@ -1199,7 +1208,7 @@ export default function Home() {
                   <div className="space-y-3">
                     {!isLocked ? (
                       <div className="text-center py-16 text-[#71767b] text-xs bg-[#16181c] border border-[#2f3336] rounded-xl p-6">
-                        🔒 Diğer menajerlerin öngörüleri saat <strong>18:00</strong>'de kapandıktan sonra burada listelenecektir.
+                        🔒 Diğer menajerlerin öngörüleri maç saatinde öngörüler kapandıktan sonra burada listelenecektir.
                       </div>
                     ) : allBets.length === 0 ? (
                       <div className="text-center py-16 text-[#71767b] text-xs">Kayıtlı öngörü bulunmuyor.</div>

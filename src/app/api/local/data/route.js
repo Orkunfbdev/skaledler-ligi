@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '../../../../lib/prisma';
 import { currentUser } from '../../../../lib/local-auth';
+import { isPredictionsLocked } from '../../../../lib/match-lock';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,7 @@ const FIELDS = {
   matches: ['id', 'matchday', 'home_team_id', 'away_team_id', 'is_finished', 'is_banko', 'settled'],
   bets: ['id', 'user_id', 'match_id', 'status', 'bet_type'],
   profiles: ['id', 'username', 'balance', 'is_admin'],
-  league_settings: ['id', 'active_matchday'],
+  league_settings: ['id', 'active_matchday', 'predictions_locked', 'unlocked_at'],
   daily_quotes: ['id', 'user_id', 'created_at'],
   transfers: ['id', 'fingerprint', 'transfer_date', 'matchday'],
   standings: ['team_id', 'rank', 'points'],
@@ -70,17 +71,9 @@ export async function POST(request) {
 
     if (table === 'bets' && operation === 'insert') {
       if (!admin) {
-        const now = new Date();
-        const trHour = parseInt(
-          new Intl.DateTimeFormat('tr-TR', {
-            timeZone: 'Europe/Istanbul',
-            hour: 'numeric',
-            hour12: false,
-          }).format(now),
-          10
-        );
-        if (trHour >= 18) {
-          return fail('Günün maçları için öngörüler saat 18:00 itibarıyla kapanmıştır.');
+        const settings = await prisma.leagueSettings.findUnique({ where: { id: 1 } });
+        if (isPredictionsLocked(settings)) {
+          return fail('Günün maçları için öngörüler şu anda kapalıdır (Saat 18:00 kapanışı veya kilitli).');
         }
       }
       if (value.user_id !== user.id || !['single', 'combo'].includes(value.bet_type)
@@ -144,8 +137,21 @@ export async function POST(request) {
     if (!admin) return fail('Yönetici yetkisi gerekli.', 403);
 
     if (table === 'league_settings' && (operation === 'upsert' || operation === 'update')) {
-      const targetMd = number(value?.active_matchday);
-      return data(await model.upsert({ where: { id: 1 }, create: { id: 1, active_matchday: targetMd }, update: { active_matchday: targetMd } }));
+      const dataToSave = {};
+      if (value?.active_matchday !== undefined && !isNaN(Number(value.active_matchday))) {
+        dataToSave.active_matchday = number(value.active_matchday);
+      }
+      if (value?.predictions_locked !== undefined) {
+        dataToSave.predictions_locked = Boolean(value.predictions_locked);
+      }
+      if (value?.unlocked_at !== undefined) {
+        dataToSave.unlocked_at = value.unlocked_at ? new Date(value.unlocked_at) : null;
+      }
+      return data(await model.upsert({
+        where: { id: 1 },
+        create: { id: 1, active_matchday: dataToSave.active_matchday ?? 2, ...dataToSave },
+        update: dataToSave,
+      }));
     }
     if (table === 'bets' && operation === 'update' && value.status === 'cancelled') {
       await prisma.$transaction(async (tx) => {

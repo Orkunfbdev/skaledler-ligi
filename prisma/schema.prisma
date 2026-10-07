@@ -125,8 +125,10 @@ model Bet {
 }
 
 model LeagueSettings {
-  id              Int @id
-  active_matchday Int @default(2)
+  id                 Int       @id
+  active_matchday    Int       @default(2)
+  predictions_locked Boolean   @default(false)
+  unlocked_at        DateTime? @db.Timestamptz(6)
 
   @@map("league_settings")
 }

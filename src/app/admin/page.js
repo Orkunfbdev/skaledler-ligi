@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { api } from '../../lib/client';
+import { isPredictionsLocked, getPredictionStatusLabel } from '../../lib/match-lock';
 import Link from 'next/link';
 
 export default function AdminPage() {
   const [profile, setProfile] = useState(null);
+  const [leagueSettings, setLeagueSettings] = useState(null);
   const [teams, setTeams] = useState([]);
   const [profilesList, setProfilesList] = useState([]);
   const [matchday, setMatchday] = useState(3);
@@ -128,11 +130,14 @@ export default function AdminPage() {
 
   const fetchLeagueSettings = async () => {
     const { data } = await api.from('league_settings').select('*').eq('id', 1).single();
-    if (data?.active_matchday) {
-      const activeW = Number(data.active_matchday);
-      setActiveMatchday(activeW);
-      setMatchday(activeW);
-      fetchMatches(activeW);
+    if (data) {
+      setLeagueSettings(data);
+      if (data.active_matchday) {
+        const activeW = Number(data.active_matchday);
+        setActiveMatchday(activeW);
+        setMatchday(activeW);
+        fetchMatches(activeW);
+      }
     }
   };
 
@@ -179,32 +184,88 @@ export default function AdminPage() {
     });
   };
 
+  const handleUnlockPredictions = async () => {
+    const nowIso = new Date().toISOString();
+    const res = await api.from('league_settings').upsert({
+      id: 1,
+      predictions_locked: false,
+      unlocked_at: nowIso,
+    });
+    if (res?.error) {
+      showNotice('Hata: ' + res.error.message);
+      return;
+    }
+    await fetchLeagueSettings();
+    showNotice('🟢 Öngörüler başarıyla geri aktifleştirildi! Menajerler artık saat 18:00 sonrasında da yeni tahmin yapabilir.');
+  };
+
+  const handleLockPredictions = async () => {
+    const res = await api.from('league_settings').upsert({
+      id: 1,
+      predictions_locked: true,
+    });
+    if (res?.error) {
+      showNotice('Hata: ' + res.error.message);
+      return;
+    }
+    await fetchLeagueSettings();
+    showNotice('🔒 Öngörüler kilitlendi (kapatıldı). Menajerler yeni tahmin yapamaz.');
+  };
+
+  const handleResetToAutoPredictions = async () => {
+    const res = await api.from('league_settings').upsert({
+      id: 1,
+      predictions_locked: false,
+      unlocked_at: null,
+    });
+    if (res?.error) {
+      showNotice('Hata: ' + res.error.message);
+      return;
+    }
+    await fetchLeagueSettings();
+    showNotice('⏰ Öngörüler 18:00 otomatik kapanış kuralına sıfırlandı.');
+  };
+
   const handleSetActiveMatchday = async (week) => {
     const target = Number(week);
     if (!target || target < 1) return;
-    const res = await api.from('league_settings').upsert({ id: 1, active_matchday: target });
+    const nowIso = new Date().toISOString();
+    const res = await api.from('league_settings').upsert({
+      id: 1,
+      active_matchday: target,
+      predictions_locked: false,
+      unlocked_at: nowIso,
+    });
     if (res?.error) {
       showNotice('Hata: ' + res.error.message);
       return;
     }
     setActiveMatchday(target);
     setMatchday(target);
-    showNotice(`📢 ${target}. Hafta bültene başarıyla yayınlandı!`);
+    await fetchLeagueSettings();
+    showNotice(`📢 ${target}. Hafta bültene başarıyla yayınlandı ve öngörüler aktifleştirildi!`);
     fetchMatches(target);
   };
 
   const handleAdvanceToNextMatchday = async (currentW) => {
     const cur = Number(currentW);
     const nextW = cur + 1;
-    showConfirm(`${cur}. haftanın puanları dağıtıldı olarak işaretlenecek ve ${nextW}. hafta bültene açılacak. Devam edilsin mi?`, async () => {
-      const res = await api.from('league_settings').upsert({ id: 1, active_matchday: nextW });
+    showConfirm(`${cur}. haftanın puanları dağıtıldı olarak işaretlenecek, ${nextW}. hafta bültene açılacak ve öngörüler yeni hafta için geri aktifleştirilecek. Devam edilsin mi?`, async () => {
+      const nowIso = new Date().toISOString();
+      const res = await api.from('league_settings').upsert({
+        id: 1,
+        active_matchday: nextW,
+        predictions_locked: false,
+        unlocked_at: nowIso,
+      });
       if (res?.error) {
         showNotice('Hata: ' + res.error.message);
         return;
       }
       setActiveMatchday(nextW);
       setMatchday(nextW);
-      showNotice(`✅ ${cur}. Hafta puanları dağıtıldı ve tamamlandı!\n📢 ${nextW}. Hafta bülteni başarıyla yayına açıldı.`);
+      await fetchLeagueSettings();
+      showNotice(`✅ ${cur}. Hafta puanları dağıtıldı ve tamamlandı!\n📢 ${nextW}. Hafta bülteni başarıyla yayına açıldı ve öngörüler aktifleştirildi.`);
       fetchMatches(nextW);
     });
   };
@@ -666,6 +727,86 @@ export default function AdminPage() {
               </div>
             ))
           )}
+        </div>
+      </div>
+
+      {/* Öngörüler ve Bahis Durumu Yönetimi */}
+      <div className="bg-[#16181c] p-5 rounded-xl border border-[#2f3336] space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#2f3336] pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
+                ⚡ Öngörüler & Bahis Durumu Kontrolü
+              </h2>
+              <span
+                className={`text-[11px] font-mono px-3 py-1 rounded-full font-bold border flex items-center gap-1.5 ${
+                  isPredictionsLocked(leagueSettings)
+                    ? 'bg-red-950/60 border-red-800 text-red-400'
+                    : 'bg-emerald-950/60 border-emerald-800 text-emerald-400'
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    isPredictionsLocked(leagueSettings) ? 'bg-red-500' : 'bg-emerald-500 animate-pulse'
+                  }`}
+                ></span>
+                {isPredictionsLocked(leagueSettings) ? 'KAPALI (KİLİTLİ)' : 'AÇIK (AKTİF)'}
+              </span>
+            </div>
+            <p className="text-xs text-[#71767b] mt-1 font-mono">
+              {getPredictionStatusLabel(leagueSettings)}
+              {leagueSettings?.unlocked_at && !isPredictionsLocked(leagueSettings) && (
+                <span className="text-emerald-400 ml-2">
+                  (Son Aktifleştirme: {new Date(leagueSettings.unlocked_at).toLocaleTimeString('tr-TR', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' })})
+                </span>
+              )}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5">
+            {isPredictionsLocked(leagueSettings) ? (
+              <button
+                onClick={handleUnlockPredictions}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition shadow-lg flex items-center gap-2 active:scale-95 animate-pulse"
+                title="Saat 18:00 geçmiş olsa bile menajerler için öngörüleri hemen geri aktifleştirir"
+              >
+                🟢 Öngörüleri Aktifleştir (Yeniden Aç)
+              </button>
+            ) : (
+              <button
+                onClick={handleUnlockPredictions}
+                className="bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/40 px-3.5 py-2 rounded-xl text-xs font-bold font-mono transition flex items-center gap-1.5"
+                title="Süreyi yenile ve açık tut"
+              >
+                🔄 Aktifliği Yenile
+              </button>
+            )}
+
+            <button
+              onClick={handleLockPredictions}
+              className="bg-red-950/60 hover:bg-red-900 border border-red-800 text-red-300 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold font-mono transition flex items-center gap-1.5 active:scale-95"
+              title="Menajerlerin yeni tahmin yapmasını hemen engeller"
+            >
+              🔴 Öngörüleri Kilitle (Kapat)
+            </button>
+
+            <button
+              onClick={handleResetToAutoPredictions}
+              className="bg-black/60 hover:bg-neutral-800 border border-[#2f3336] text-[#71767b] hover:text-white px-3 py-2 rounded-xl text-xs font-mono transition"
+              title="Saat 18:00 otomatik kapanış kuralına geri döndürür"
+            >
+              ⏰ 18:00 Otomatik Moda Sıfırla
+            </button>
+          </div>
+        </div>
+
+        <div className="text-xs text-[#71767b] space-y-1 font-mono bg-black/40 p-3 rounded-lg border border-[#2f3336]/60">
+          <p>
+            ℹ️ <strong className="text-gray-300">Otomatik Kural:</strong> Normalde her gün maç saatinde (18:00) öngörüler otomatik kilitlenir.
+          </p>
+          <p>
+            ✨ <strong className="text-emerald-400">Geri Açma:</strong> Maçlar bittiğinde veya yeni hafta hazır olduğunda <strong className="text-white">"Öngörüleri Aktifleştir"</strong> butonuna bastığınızda ya da aşağıdaki <strong className="text-white">"Haftaya Geç"</strong> butonunu kullandığınızda öngörüler hemen menajerlere açılır ve ertesi gün saat 18:00'e kadar açık kalır.
+          </p>
         </div>
       </div>
 
