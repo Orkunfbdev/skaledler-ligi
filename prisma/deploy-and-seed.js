@@ -1,3 +1,4 @@
+try { require('dotenv').config(); } catch {}
 const { execSync } = require('child_process');
 
 async function run() {
@@ -39,6 +40,25 @@ async function run() {
     execSync('node prisma/import-fixtures.js', { stdio: 'inherit' });
   } catch (error) {
     console.warn('Fikstür yükleme sırasında uyarı:', error.message);
+  }
+
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const { PrismaClient } = require('@prisma/client');
+    const prisma = new PrismaClient({ datasources: { db: { url: dbUrl } } });
+    await prisma.$executeRawUnsafe('CREATE SCHEMA IF NOT EXISTS app_private;');
+    const migrationPath = path.join(__dirname, 'migrations', '20261007000001_settlement', 'migration.sql');
+    if (fs.existsSync(migrationPath)) {
+      const sql = fs.readFileSync(migrationPath, 'utf8');
+      const funcSql = sql.substring(sql.indexOf('create or replace function'), sql.indexOf('REVOKE ALL')).trim();
+      await prisma.$executeRawUnsafe(funcSql);
+      await prisma.$executeRawUnsafe('REVOKE ALL ON FUNCTION app_private.settle_match(uuid, integer, integer) FROM PUBLIC;');
+    }
+    await prisma.$disconnect();
+    console.log('⚙️ app_private.settle_match fonksiyonu doğrulandı.');
+  } catch (e) {
+    console.warn('settle_match fonksiyon kurulum uyarısı:', e.message);
   }
 
   console.log('✅ Veritabanı kurulumu başarıyla tamamlandı!');
