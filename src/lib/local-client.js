@@ -60,9 +60,15 @@ export const localClient = {
     async getSession() {
       try {
         const response = await fetch('/api/local/auth', { credentials: 'same-origin' });
-        const { user } = await response.json();
-        return { data: { session: user ? { user } : null } };
-      } catch { return { data: { session: null } }; }
+        const resData = await response.json();
+        return {
+          data: {
+            session: resData.user ? { user: resData.user } : null,
+            userCount: resData.userCount ?? 0,
+            isRegistrationClosed: Boolean(resData.isRegistrationClosed),
+          }
+        };
+      } catch { return { data: { session: null, userCount: 0, isRegistrationClosed: false } }; }
     },
     onAuthStateChange(listener) {
       listeners.add(listener);

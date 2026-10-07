@@ -55,6 +55,8 @@ export default function Home() {
   const [username, setUsername] = useState('');
   const [adminCode, setAdminCode] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const [registeredCount, setRegisteredCount] = useState(14);
+  const [isRegistrationClosed, setIsRegistrationClosed] = useState(false);
   const [editUsername, setEditUsername] = useState('');
   const [editAvatar, setEditAvatar] = useState('');
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
@@ -64,6 +66,7 @@ export default function Home() {
   const [comboAmount, setComboAmount] = useState(50);
 
   const currentMatchDayKey = getOSMMatchDayKey();
+  const registrationClosed = isRegistrationClosed || registeredCount >= 16 || leaderboard.length >= 16;
 
   useEffect(() => {
     if (audioRef.current) {
@@ -123,11 +126,18 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    api.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchProfile(session.user.id);
-        checkIfPostedQuote(session.user.id);
+    api.auth.getSession().then(({ data }) => {
+      setUser(data?.session?.user ?? null);
+      if (data?.userCount !== undefined) {
+        setRegisteredCount(data.userCount);
+        if (data.userCount >= 16 || data.isRegistrationClosed) {
+          setIsRegistrationClosed(true);
+          setIsSignUp(false);
+        }
+      }
+      if (data?.session?.user) {
+        fetchProfile(data.session.user.id);
+        checkIfPostedQuote(data.session.user.id);
       }
     });
 
@@ -196,7 +206,14 @@ export default function Home() {
       .from('profiles')
       .select('*')
       .order('balance', { ascending: false });
-    if (leaders) setLeaderboard(leaders);
+    if (leaders) {
+      setLeaderboard(leaders);
+      setRegisteredCount(leaders.length);
+      if (leaders.length >= 16) {
+        setIsRegistrationClosed(true);
+        setIsSignUp(false);
+      }
+    }
 
     const { data: quotesData } = await api
       .from('daily_quotes')
@@ -214,7 +231,7 @@ export default function Home() {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (isSignUp) {
+    if (!registrationClosed && isSignUp) {
       const { error } = await api.auth.signUp({
         email,
         password,
@@ -224,6 +241,14 @@ export default function Home() {
       else {
         alert('Menajer kaydınız oluşturuldu!');
         setIsSignUp(false);
+        fetchData();
+        const { data } = await api.auth.getSession();
+        if (data?.userCount !== undefined) {
+          setRegisteredCount(data.userCount);
+          if (data.userCount >= 16 || data.isRegistrationClosed) {
+            setIsRegistrationClosed(true);
+          }
+        }
       }
     } else {
       const { error } = await api.auth.signInWithPassword({ email, password });
@@ -726,7 +751,7 @@ export default function Home() {
 
             <div className="w-full bg-[#16181c]/90 backdrop-blur-md border border-[#2f3336] p-7 pt-9 rounded-3xl shadow-2xl space-y-4 -mt-10 relative z-20">
               <form onSubmit={handleAuth} className="space-y-3.5">
-                {isSignUp && (
+                {!registrationClosed && isSignUp && (
                   <div>
                     <input
                       type="text"
@@ -763,19 +788,36 @@ export default function Home() {
                   type="submit"
                   className="w-full bg-white hover:bg-neutral-200 text-black font-black py-3.5 rounded-xl text-xs uppercase font-mono tracking-wider transition shadow-lg mt-2 active:scale-95"
                 >
-                  {isSignUp ? 'Kayıt Ol' : 'Giriş Yap'}
+                  {!registrationClosed && isSignUp ? 'Kayıt Ol' : 'Giriş Yap'}
                 </button>
               </form>
 
-              <div className="pt-2 text-center">
-                <button
-                  onClick={() => setIsSignUp(!isSignUp)}
-                  className="text-xs text-[#71767b] hover:text-white transition"
-                >
-                  {isSignUp ? 'Zaten hesabın var mı? ' : 'Hesabın yok mu? '}
-                  <strong className="text-white underline">{isSignUp ? 'Giriş Yap' : 'Kayıt Ol'}</strong>
-                </button>
-              </div>
+              {registrationClosed ? (
+                <div className="pt-2 text-center flex flex-col items-center gap-1.5">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-400 text-xs font-mono font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span>KAYITLAR KAPANDI ({Math.max(registeredCount, leaderboard.length || 16)}/16)</span>
+                  </div>
+                  <p className="text-[11px] text-[#71767b] mt-1">16 menajer kontenjanı dolmuştur, yalnızca kayıtlı menajerler giriş yapabilir.</p>
+                </div>
+              ) : (
+                <div className="pt-2 text-center space-y-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setIsSignUp(!isSignUp)}
+                    className="text-xs text-[#71767b] hover:text-white transition"
+                  >
+                    {isSignUp ? 'Zaten hesabın var mı? ' : 'Hesabın yok mu? '}
+                    <strong className="text-white underline">{isSignUp ? 'Giriş Yap' : 'Kayıt Ol'}</strong>
+                  </button>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-mono">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+                      <span>Son {Math.max(0, 16 - (registeredCount || leaderboard.length || 14))} Kontenjan ({Math.min(16, registeredCount || leaderboard.length || 14)}/16)</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <p className="text-[11px] text-[#71767b] text-center max-w-xs mt-3 leading-normal">

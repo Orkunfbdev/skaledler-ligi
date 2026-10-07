@@ -565,7 +565,7 @@ export default function AdminPage() {
                 href="/"
                 className="text-xs text-[#71767b] hover:text-white transition"
               >
-                Hesabın yok mu? <strong className="text-white underline">Kayıt Ol</strong>
+                ← Ana Sayfaya Dön
               </Link>
             </div>
           </div>
@@ -856,9 +856,18 @@ export default function AdminPage() {
         {/* 2. Kayıtlı Menajerler Listesi ve Yetki Verme */}
         <div className="space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span className="text-[11px] text-white font-mono uppercase tracking-wider font-bold">
-              Kayıtlı Menajerler ({profilesList.length})
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-white font-mono uppercase tracking-wider font-bold">
+                Kayıtlı Menajerler ({profilesList.length}/16)
+              </span>
+              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
+                profilesList.length >= 16 
+                  ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
+                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+              }`}>
+                {profilesList.length >= 16 ? 'Kontenjan Dolu' : `${16 - profilesList.length} Kontenjan Açık`}
+              </span>
+            </div>
             <input
               type="text"
               placeholder="Menajer ara..."

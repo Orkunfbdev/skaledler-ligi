@@ -8,10 +8,15 @@ export const dynamic = 'force-dynamic';
 export async function GET(request) {
   try {
     const user = await currentUser(request);
-    return NextResponse.json({ user: user ? { id: user.id, email: user.email } : null });
+    const userCount = await prisma.user.count();
+    return NextResponse.json({
+      user: user ? { id: user.id, email: user.email } : null,
+      userCount,
+      isRegistrationClosed: userCount >= 16,
+    });
   } catch (error) {
     console.error('Auth GET error:', error);
-    return NextResponse.json({ user: null });
+    return NextResponse.json({ user: null, userCount: 0, isRegistrationClosed: false });
   }
 }
 
@@ -39,21 +44,31 @@ export async function POST(request) {
       try {
         const adminEnv = process.env.ADMIN_EMAIL?.trim().toLowerCase();
         const isAdminEmail = email === 'admin@gmail.com' || (adminEnv && email === adminEnv);
-        await prisma.user.create({
-          data: {
-            email,
-            password_hash: hashPassword(password),
-            profile: {
-              create: {
-                username,
-                is_admin: isAdminEmail,
-                balance: 1000,
+
+        await prisma.$transaction(async (tx) => {
+          const currentCount = await tx.user.count();
+          if (currentCount >= 16) {
+            throw new Error('QUOTA_FULL');
+          }
+          return await tx.user.create({
+            data: {
+              email,
+              password_hash: hashPassword(password),
+              profile: {
+                create: {
+                  username,
+                  is_admin: isAdminEmail,
+                  balance: 1000,
+                },
               },
             },
-          },
+          });
         });
         return NextResponse.json({ ok: true });
       } catch (error) {
+        if (error.message === 'QUOTA_FULL') {
+          return NextResponse.json({ error: 'Kayıtlar kapanmıştır. Maksimum 16 menajer kontenjanına ulaşılmıştır.' }, { status: 403 });
+        }
         if (error.code === 'P2002') return NextResponse.json({ error: 'E-posta veya kullanıcı adı zaten kayıtlı.' }, { status: 409 });
         throw error;
       }
