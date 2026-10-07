@@ -6,7 +6,15 @@ async function call(url, body) {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify(body), credentials: 'same-origin',
     });
-    const result = await response.json();
+    let result;
+    try {
+      result = await response.json();
+    } catch {
+      return {
+        data: null,
+        error: { message: `Sunucu yanıt veremedi (${response.status}). Veritabanı bağlantısı veya kurulum bekleniyor.` }
+      };
+    }
     return response.ok ? { data: result.data ?? result.user ?? result.ok ?? null, error: null }
       : { data: null, error: { message: result.error || 'İşlem başarısız.' } };
   } catch (error) {

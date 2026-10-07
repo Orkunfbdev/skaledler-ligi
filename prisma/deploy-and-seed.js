@@ -16,11 +16,16 @@ async function run() {
   }
   process.env.DATABASE_URL = dbUrl;
 
-  console.log('🚀 Veritabanı tabloları otomatik kuruluyor (prisma migrate deploy)...');
+  console.log('🚀 Veritabanı tabloları senkronize ediliyor (prisma db push)...');
   try {
-    execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+    execSync('npx prisma db push --skip-generate', { stdio: 'inherit' });
   } catch (error) {
-    console.warn('Migrate sırasında uyarı:', error.message);
+    console.warn('db push uyarısı, migrate deneniyor:', error.message);
+    try {
+      execSync('npx prisma migrate deploy', { stdio: 'inherit' });
+    } catch (e) {
+      console.warn('migrate uyarısı:', e.message);
+    }
   }
 
   console.log('🌱 Takımlar, admin hesabı ve fikstürler otomatik yükleniyor...');
