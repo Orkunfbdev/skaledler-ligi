@@ -20,7 +20,9 @@ if (resolvedUrl && !process.env.DATABASE_URL) {
   process.env.DATABASE_URL = resolvedUrl;
 }
 
-const prisma = globalThis.__skaledlerPrisma || new PrismaClient();
+const prisma = globalThis.__skaledlerPrisma || new PrismaClient(
+  resolvedUrl ? { datasources: { db: { url: resolvedUrl } } } : undefined
+);
 if (process.env.NODE_ENV !== 'production') globalThis.__skaledlerPrisma = prisma;
 
 export default prisma;

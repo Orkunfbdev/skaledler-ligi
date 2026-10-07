@@ -13,13 +13,21 @@ function hashPassword(password) {
 
 export async function GET(request) {
   try {
+    const envKeys = Object.keys(process.env).filter(k => !k.startsWith('npm_') && k !== 'PATH');
+    const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL || process.env.STORAGE_URL;
+    if (!dbUrl) {
+      return NextResponse.json({
+        ok: false,
+        error: 'Veritabanı adresi (DATABASE_URL veya Neon) bulunamadı.',
+        availableEnvKeys: envKeys,
+      }, { status: 500 });
+    }
+
     const teamsPath = path.join(process.cwd(), 'prisma', 'seed-teams.json');
     const fixturesPath = path.join(process.cwd(), 'prisma', 'osm-fixtures.json');
 
     const teamsData = JSON.parse(fs.readFileSync(teamsPath, 'utf8'));
     const fixturesData = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'));
-
-    // 1. Seed teams
     for (const item of teamsData) {
       await prisma.team.upsert({
         where: { name: item.name },
