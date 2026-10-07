@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.next/
+node_modules/
+.venv/
+.local-pg/
+.local-pg.log
+public/local-avatars/
+scratch/

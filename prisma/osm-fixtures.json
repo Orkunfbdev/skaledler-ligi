@@ -1,0 +1,1802 @@
+[
+  {
+    "away": "Crystal Palace",
+    "home": "Arsenal",
+    "week": 3
+  },
+  {
+    "away": "Coventry City",
+    "home": "Everton",
+    "week": 3
+  },
+  {
+    "away": "Brentford",
+    "home": "Leeds United",
+    "week": 3
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Newcastle United",
+    "week": 3
+  },
+  {
+    "away": "Sunderland",
+    "home": "Hull City",
+    "week": 3
+  },
+  {
+    "away": "Fulham",
+    "home": "Tottenham Hotspur",
+    "week": 3
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Manchester City",
+    "week": 3
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Chelsea",
+    "week": 3
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Bournemouth",
+    "week": 3
+  },
+  {
+    "away": "Manchester United",
+    "home": "Ipswich Town",
+    "week": 3
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Manchester United",
+    "week": 4
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Brighton and Hove Albion",
+    "week": 4
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Liverpool FC",
+    "week": 4
+  },
+  {
+    "away": "Hull City",
+    "home": "Chelsea",
+    "week": 4
+  },
+  {
+    "away": "Manchester City",
+    "home": "Brentford",
+    "week": 4
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Aston Villa",
+    "week": 4
+  },
+  {
+    "away": "Leeds United",
+    "home": "Coventry City",
+    "week": 4
+  },
+  {
+    "away": "Everton",
+    "home": "Nottingham Forest",
+    "week": 4
+  },
+  {
+    "away": "Sunderland",
+    "home": "Crystal Palace",
+    "week": 4
+  },
+  {
+    "away": "Arsenal",
+    "home": "Fulham",
+    "week": 4
+  },
+  {
+    "away": "Brentford",
+    "home": "Newcastle United",
+    "week": 5
+  },
+  {
+    "away": "Fulham",
+    "home": "Sunderland",
+    "week": 5
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Arsenal",
+    "week": 5
+  },
+  {
+    "away": "Manchester United",
+    "home": "Tottenham Hotspur",
+    "week": 5
+  },
+  {
+    "away": "Coventry City",
+    "home": "Manchester City",
+    "week": 5
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Hull City",
+    "week": 5
+  },
+  {
+    "away": "Chelsea",
+    "home": "Everton",
+    "week": 5
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Leeds United",
+    "week": 5
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Bournemouth",
+    "week": 5
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Ipswich Town",
+    "week": 5
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Coventry City",
+    "week": 6
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Brighton and Hove Albion",
+    "week": 6
+  },
+  {
+    "away": "Hull City",
+    "home": "Everton",
+    "week": 6
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Aston Villa",
+    "week": 6
+  },
+  {
+    "away": "Leeds United",
+    "home": "Chelsea",
+    "week": 6
+  },
+  {
+    "away": "Sunderland",
+    "home": "Liverpool FC",
+    "week": 6
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Fulham",
+    "week": 6
+  },
+  {
+    "away": "Arsenal",
+    "home": "Manchester United",
+    "week": 6
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Brentford",
+    "week": 6
+  },
+  {
+    "away": "Manchester City",
+    "home": "Nottingham Forest",
+    "week": 6
+  },
+  {
+    "away": "Brentford",
+    "home": "Bournemouth",
+    "week": 7
+  },
+  {
+    "away": "Manchester United",
+    "home": "Sunderland",
+    "week": 7
+  },
+  {
+    "away": "Chelsea",
+    "home": "Manchester City",
+    "week": 7
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Newcastle United",
+    "week": 7
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Tottenham Hotspur",
+    "week": 7
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Crystal Palace",
+    "week": 7
+  },
+  {
+    "away": "Fulham",
+    "home": "Hull City",
+    "week": 7
+  },
+  {
+    "away": "Coventry City",
+    "home": "Ipswich Town",
+    "week": 7
+  },
+  {
+    "away": "Everton",
+    "home": "Leeds United",
+    "week": 7
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Arsenal",
+    "week": 7
+  },
+  {
+    "away": "Hull City",
+    "home": "Leeds United",
+    "week": 8
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Nottingham Forest",
+    "week": 8
+  },
+  {
+    "away": "Fulham",
+    "home": "Liverpool FC",
+    "week": 8
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Chelsea",
+    "week": 8
+  },
+  {
+    "away": "Arsenal",
+    "home": "Aston Villa",
+    "week": 8
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Manchester United",
+    "week": 8
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Coventry City",
+    "week": 8
+  },
+  {
+    "away": "Manchester City",
+    "home": "Everton",
+    "week": 8
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Brentford",
+    "week": 8
+  },
+  {
+    "away": "Sunderland",
+    "home": "Brighton and Hove Albion",
+    "week": 8
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Crystal Palace",
+    "week": 9
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Sunderland",
+    "week": 9
+  },
+  {
+    "away": "Coventry City",
+    "home": "Tottenham Hotspur",
+    "week": 9
+  },
+  {
+    "away": "Everton",
+    "home": "Newcastle United",
+    "week": 9
+  },
+  {
+    "away": "Leeds United",
+    "home": "Manchester City",
+    "week": 9
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Hull City",
+    "week": 9
+  },
+  {
+    "away": "Brentford",
+    "home": "Arsenal",
+    "week": 9
+  },
+  {
+    "away": "Chelsea",
+    "home": "Ipswich Town",
+    "week": 9
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Bournemouth",
+    "week": 9
+  },
+  {
+    "away": "Manchester United",
+    "home": "Fulham",
+    "week": 9
+  },
+  {
+    "away": "Arsenal",
+    "home": "Coventry City",
+    "week": 10
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Manchester United",
+    "week": 10
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Everton",
+    "week": 10
+  },
+  {
+    "away": "Sunderland",
+    "home": "Brentford",
+    "week": 10
+  },
+  {
+    "away": "Fulham",
+    "home": "Brighton and Hove Albion",
+    "week": 10
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Nottingham Forest",
+    "week": 10
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Chelsea",
+    "week": 10
+  },
+  {
+    "away": "Hull City",
+    "home": "Manchester City",
+    "week": 10
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Aston Villa",
+    "week": 10
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Leeds United",
+    "week": 10
+  },
+  {
+    "away": "Everton",
+    "home": "Bournemouth",
+    "week": 11
+  },
+  {
+    "away": "Chelsea",
+    "home": "Tottenham Hotspur",
+    "week": 11
+  },
+  {
+    "away": "Manchester City",
+    "home": "Newcastle United",
+    "week": 11
+  },
+  {
+    "away": "Brentford",
+    "home": "Crystal Palace",
+    "week": 11
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Fulham",
+    "week": 11
+  },
+  {
+    "away": "Manchester United",
+    "home": "Hull City",
+    "week": 11
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Liverpool FC",
+    "week": 11
+  },
+  {
+    "away": "Coventry City",
+    "home": "Sunderland",
+    "week": 11
+  },
+  {
+    "away": "Leeds United",
+    "home": "Ipswich Town",
+    "week": 11
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Arsenal",
+    "week": 11
+  },
+  {
+    "away": "Manchester United",
+    "home": "Brighton and Hove Albion",
+    "week": 12
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Leeds United",
+    "week": 12
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Manchester City",
+    "week": 12
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Everton",
+    "week": 12
+  },
+  {
+    "away": "Sunderland",
+    "home": "Nottingham Forest",
+    "week": 12
+  },
+  {
+    "away": "Fulham",
+    "home": "Brentford",
+    "week": 12
+  },
+  {
+    "away": "Hull City",
+    "home": "Newcastle United",
+    "week": 12
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Coventry City",
+    "week": 12
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Aston Villa",
+    "week": 12
+  },
+  {
+    "away": "Arsenal",
+    "home": "Chelsea",
+    "week": 12
+  },
+  {
+    "away": "Coventry City",
+    "home": "Fulham",
+    "week": 13
+  },
+  {
+    "away": "Manchester City",
+    "home": "Bournemouth",
+    "week": 13
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Manchester United",
+    "week": 13
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Crystal Palace",
+    "week": 13
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Hull City",
+    "week": 13
+  },
+  {
+    "away": "Leeds United",
+    "home": "Tottenham Hotspur",
+    "week": 13
+  },
+  {
+    "away": "Brentford",
+    "home": "Liverpool FC",
+    "week": 13
+  },
+  {
+    "away": "Everton",
+    "home": "Arsenal",
+    "week": 13
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Ipswich Town",
+    "week": 13
+  },
+  {
+    "away": "Chelsea",
+    "home": "Sunderland",
+    "week": 13
+  },
+  {
+    "away": "Arsenal",
+    "home": "Leeds United",
+    "week": 14
+  },
+  {
+    "away": "Hull City",
+    "home": "Ipswich Town",
+    "week": 14
+  },
+  {
+    "away": "Sunderland",
+    "home": "Everton",
+    "week": 14
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Chelsea",
+    "week": 14
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Coventry City",
+    "week": 14
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Newcastle United",
+    "week": 14
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Aston Villa",
+    "week": 14
+  },
+  {
+    "away": "Fulham",
+    "home": "Nottingham Forest",
+    "week": 14
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Manchester City",
+    "week": 14
+  },
+  {
+    "away": "Manchester United",
+    "home": "Brentford",
+    "week": 14
+  },
+  {
+    "away": "Leeds United",
+    "home": "Sunderland",
+    "week": 15
+  },
+  {
+    "away": "Manchester City",
+    "home": "Arsenal",
+    "week": 15
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Bournemouth",
+    "week": 15
+  },
+  {
+    "away": "Brentford",
+    "home": "Brighton and Hove Albion",
+    "week": 15
+  },
+  {
+    "away": "Coventry City",
+    "home": "Manchester United",
+    "week": 15
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Liverpool FC",
+    "week": 15
+  },
+  {
+    "away": "Chelsea",
+    "home": "Fulham",
+    "week": 15
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Hull City",
+    "week": 15
+  },
+  {
+    "away": "Everton",
+    "home": "Crystal Palace",
+    "week": 15
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Tottenham Hotspur",
+    "week": 15
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Coventry City",
+    "week": 16
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Ipswich Town",
+    "week": 16
+  },
+  {
+    "away": "Sunderland",
+    "home": "Manchester City",
+    "week": 16
+  },
+  {
+    "away": "Arsenal",
+    "home": "Newcastle United",
+    "week": 16
+  },
+  {
+    "away": "Hull City",
+    "home": "Bournemouth",
+    "week": 16
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Chelsea",
+    "week": 16
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Brentford",
+    "week": 16
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Leeds United",
+    "week": 16
+  },
+  {
+    "away": "Manchester United",
+    "home": "Nottingham Forest",
+    "week": 16
+  },
+  {
+    "away": "Fulham",
+    "home": "Everton",
+    "week": 16
+  },
+  {
+    "away": "Chelsea",
+    "home": "Manchester United",
+    "week": 17
+  },
+  {
+    "away": "Brentford",
+    "home": "Hull City",
+    "week": 17
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Tottenham Hotspur",
+    "week": 17
+  },
+  {
+    "away": "Coventry City",
+    "home": "Aston Villa",
+    "week": 17
+  },
+  {
+    "away": "Everton",
+    "home": "Liverpool FC",
+    "week": 17
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Brighton and Hove Albion",
+    "week": 17
+  },
+  {
+    "away": "Leeds United",
+    "home": "Fulham",
+    "week": 17
+  },
+  {
+    "away": "Manchester City",
+    "home": "Crystal Palace",
+    "week": 17
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Arsenal",
+    "week": 17
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Sunderland",
+    "week": 17
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Nottingham Forest",
+    "week": 18
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Chelsea",
+    "week": 18
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Newcastle United",
+    "week": 18
+  },
+  {
+    "away": "Sunderland",
+    "home": "Ipswich Town",
+    "week": 18
+  },
+  {
+    "away": "Arsenal",
+    "home": "Bournemouth",
+    "week": 18
+  },
+  {
+    "away": "Fulham",
+    "home": "Manchester City",
+    "week": 18
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Leeds United",
+    "week": 18
+  },
+  {
+    "away": "Hull City",
+    "home": "Tottenham Hotspur",
+    "week": 18
+  },
+  {
+    "away": "Manchester United",
+    "home": "Everton",
+    "week": 18
+  },
+  {
+    "away": "Brentford",
+    "home": "Coventry City",
+    "week": 18
+  },
+  {
+    "away": "Chelsea",
+    "home": "Aston Villa",
+    "week": 19
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Crystal Palace",
+    "week": 19
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Sunderland",
+    "week": 19
+  },
+  {
+    "away": "Leeds United",
+    "home": "Manchester United",
+    "week": 19
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Arsenal",
+    "week": 19
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Fulham",
+    "week": 19
+  },
+  {
+    "away": "Coventry City",
+    "home": "Hull City",
+    "week": 19
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Brentford",
+    "week": 19
+  },
+  {
+    "away": "Manchester City",
+    "home": "Liverpool FC",
+    "week": 19
+  },
+  {
+    "away": "Everton",
+    "home": "Brighton and Hove Albion",
+    "week": 19
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Liverpool FC",
+    "week": 20
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Coventry City",
+    "week": 20
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Crystal Palace",
+    "week": 20
+  },
+  {
+    "away": "Hull City",
+    "home": "Arsenal",
+    "week": 20
+  },
+  {
+    "away": "Manchester City",
+    "home": "Manchester United",
+    "week": 20
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Sunderland",
+    "week": 20
+  },
+  {
+    "away": "Chelsea",
+    "home": "Brentford",
+    "week": 20
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Fulham",
+    "week": 20
+  },
+  {
+    "away": "Everton",
+    "home": "Aston Villa",
+    "week": 20
+  },
+  {
+    "away": "Leeds United",
+    "home": "Brighton and Hove Albion",
+    "week": 20
+  },
+  {
+    "away": "Manchester United",
+    "home": "Newcastle United",
+    "week": 21
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Manchester City",
+    "week": 21
+  },
+  {
+    "away": "Coventry City",
+    "home": "Chelsea",
+    "week": 21
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Hull City",
+    "week": 21
+  },
+  {
+    "away": "Fulham",
+    "home": "Bournemouth",
+    "week": 21
+  },
+  {
+    "away": "Sunderland",
+    "home": "Arsenal",
+    "week": 21
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Leeds United",
+    "week": 21
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Tottenham Hotspur",
+    "week": 21
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Ipswich Town",
+    "week": 21
+  },
+  {
+    "away": "Brentford",
+    "home": "Everton",
+    "week": 21
+  },
+  {
+    "away": "Hull City",
+    "home": "Sunderland",
+    "week": 22
+  },
+  {
+    "away": "Manchester City",
+    "home": "Aston Villa",
+    "week": 22
+  },
+  {
+    "away": "Leeds United",
+    "home": "Brentford",
+    "week": 22
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Manchester United",
+    "week": 22
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Fulham",
+    "week": 22
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Liverpool FC",
+    "week": 22
+  },
+  {
+    "away": "Everton",
+    "home": "Coventry City",
+    "week": 22
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Brighton and Hove Albion",
+    "week": 22
+  },
+  {
+    "away": "Arsenal",
+    "home": "Crystal Palace",
+    "week": 22
+  },
+  {
+    "away": "Chelsea",
+    "home": "Nottingham Forest",
+    "week": 22
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Newcastle United",
+    "week": 23
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Ipswich Town",
+    "week": 23
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Tottenham Hotspur",
+    "week": 23
+  },
+  {
+    "away": "Fulham",
+    "home": "Arsenal",
+    "week": 23
+  },
+  {
+    "away": "Manchester United",
+    "home": "Bournemouth",
+    "week": 23
+  },
+  {
+    "away": "Chelsea",
+    "home": "Hull City",
+    "week": 23
+  },
+  {
+    "away": "Coventry City",
+    "home": "Leeds United",
+    "week": 23
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Sunderland",
+    "week": 23
+  },
+  {
+    "away": "Brentford",
+    "home": "Manchester City",
+    "week": 23
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Everton",
+    "week": 23
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Manchester United",
+    "week": 24
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Aston Villa",
+    "week": 24
+  },
+  {
+    "away": "Hull City",
+    "home": "Crystal Palace",
+    "week": 24
+  },
+  {
+    "away": "Leeds United",
+    "home": "Nottingham Forest",
+    "week": 24
+  },
+  {
+    "away": "Manchester City",
+    "home": "Coventry City",
+    "week": 24
+  },
+  {
+    "away": "Arsenal",
+    "home": "Liverpool FC",
+    "week": 24
+  },
+  {
+    "away": "Everton",
+    "home": "Chelsea",
+    "week": 24
+  },
+  {
+    "away": "Sunderland",
+    "home": "Fulham",
+    "week": 24
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Brighton and Hove Albion",
+    "week": 24
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Brentford",
+    "week": 24
+  },
+  {
+    "away": "Manchester United",
+    "home": "Arsenal",
+    "week": 25
+  },
+  {
+    "away": "Fulham",
+    "home": "Crystal Palace",
+    "week": 25
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Sunderland",
+    "week": 25
+  },
+  {
+    "away": "Coventry City",
+    "home": "Newcastle United",
+    "week": 25
+  },
+  {
+    "away": "Everton",
+    "home": "Hull City",
+    "week": 25
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Bournemouth",
+    "week": 25
+  },
+  {
+    "away": "Brentford",
+    "home": "Ipswich Town",
+    "week": 25
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Manchester City",
+    "week": 25
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Tottenham Hotspur",
+    "week": 25
+  },
+  {
+    "away": "Chelsea",
+    "home": "Leeds United",
+    "week": 25
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Liverpool FC",
+    "week": 26
+  },
+  {
+    "away": "Arsenal",
+    "home": "Brighton and Hove Albion",
+    "week": 26
+  },
+  {
+    "away": "Leeds United",
+    "home": "Everton",
+    "week": 26
+  },
+  {
+    "away": "Hull City",
+    "home": "Fulham",
+    "week": 26
+  },
+  {
+    "away": "Sunderland",
+    "home": "Manchester United",
+    "week": 26
+  },
+  {
+    "away": "Manchester City",
+    "home": "Chelsea",
+    "week": 26
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Coventry City",
+    "week": 26
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Brentford",
+    "week": 26
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Aston Villa",
+    "week": 26
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Nottingham Forest",
+    "week": 26
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Fulham",
+    "week": 27
+  },
+  {
+    "away": "Leeds United",
+    "home": "Hull City",
+    "week": 27
+  },
+  {
+    "away": "Brentford",
+    "home": "Tottenham Hotspur",
+    "week": 27
+  },
+  {
+    "away": "Coventry City",
+    "home": "Bournemouth",
+    "week": 27
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Sunderland",
+    "week": 27
+  },
+  {
+    "away": "Manchester United",
+    "home": "Crystal Palace",
+    "week": 27
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Ipswich Town",
+    "week": 27
+  },
+  {
+    "away": "Everton",
+    "home": "Manchester City",
+    "week": 27
+  },
+  {
+    "away": "Chelsea",
+    "home": "Newcastle United",
+    "week": 27
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Arsenal",
+    "week": 27
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Everton",
+    "week": 28
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Chelsea",
+    "week": 28
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Coventry City",
+    "week": 28
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Nottingham Forest",
+    "week": 28
+  },
+  {
+    "away": "Hull City",
+    "home": "Liverpool FC",
+    "week": 28
+  },
+  {
+    "away": "Manchester City",
+    "home": "Leeds United",
+    "week": 28
+  },
+  {
+    "away": "Arsenal",
+    "home": "Brentford",
+    "week": 28
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Brighton and Hove Albion",
+    "week": 28
+  },
+  {
+    "away": "Sunderland",
+    "home": "Aston Villa",
+    "week": 28
+  },
+  {
+    "away": "Fulham",
+    "home": "Manchester United",
+    "week": 28
+  },
+  {
+    "away": "Manchester United",
+    "home": "Liverpool FC",
+    "week": 29
+  },
+  {
+    "away": "Brentford",
+    "home": "Sunderland",
+    "week": 29
+  },
+  {
+    "away": "Everton",
+    "home": "Ipswich Town",
+    "week": 29
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Tottenham Hotspur",
+    "week": 29
+  },
+  {
+    "away": "Leeds United",
+    "home": "Newcastle United",
+    "week": 29
+  },
+  {
+    "away": "Coventry City",
+    "home": "Arsenal",
+    "week": 29
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Crystal Palace",
+    "week": 29
+  },
+  {
+    "away": "Manchester City",
+    "home": "Hull City",
+    "week": 29
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Fulham",
+    "week": 29
+  },
+  {
+    "away": "Chelsea",
+    "home": "Bournemouth",
+    "week": 29
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Chelsea",
+    "week": 30
+  },
+  {
+    "away": "Hull City",
+    "home": "Manchester United",
+    "week": 30
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Brighton and Hove Albion",
+    "week": 30
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Manchester City",
+    "week": 30
+  },
+  {
+    "away": "Sunderland",
+    "home": "Coventry City",
+    "week": 30
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Leeds United",
+    "week": 30
+  },
+  {
+    "away": "Arsenal",
+    "home": "Nottingham Forest",
+    "week": 30
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Brentford",
+    "week": 30
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Everton",
+    "week": 30
+  },
+  {
+    "away": "Fulham",
+    "home": "Aston Villa",
+    "week": 30
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Sunderland",
+    "week": 31
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Hull City",
+    "week": 31
+  },
+  {
+    "away": "Chelsea",
+    "home": "Arsenal",
+    "week": 31
+  },
+  {
+    "away": "Manchester City",
+    "home": "Ipswich Town",
+    "week": 31
+  },
+  {
+    "away": "Everton",
+    "home": "Tottenham Hotspur",
+    "week": 31
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Manchester United",
+    "week": 31
+  },
+  {
+    "away": "Brentford",
+    "home": "Fulham",
+    "week": 31
+  },
+  {
+    "away": "Coventry City",
+    "home": "Crystal Palace",
+    "week": 31
+  },
+  {
+    "away": "Leeds United",
+    "home": "Bournemouth",
+    "week": 31
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Liverpool FC",
+    "week": 31
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Manchester City",
+    "week": 32
+  },
+  {
+    "away": "Arsenal",
+    "home": "Everton",
+    "week": 32
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Brentford",
+    "week": 32
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Leeds United",
+    "week": 32
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Newcastle United",
+    "week": 32
+  },
+  {
+    "away": "Manchester United",
+    "home": "Aston Villa",
+    "week": 32
+  },
+  {
+    "away": "Fulham",
+    "home": "Coventry City",
+    "week": 32
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Nottingham Forest",
+    "week": 32
+  },
+  {
+    "away": "Sunderland",
+    "home": "Chelsea",
+    "week": 32
+  },
+  {
+    "away": "Hull City",
+    "home": "Brighton and Hove Albion",
+    "week": 32
+  },
+  {
+    "away": "Coventry City",
+    "home": "Liverpool FC",
+    "week": 33
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Brighton and Hove Albion",
+    "week": 33
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Fulham",
+    "week": 33
+  },
+  {
+    "away": "Chelsea",
+    "home": "Crystal Palace",
+    "week": 33
+  },
+  {
+    "away": "Manchester City",
+    "home": "Tottenham Hotspur",
+    "week": 33
+  },
+  {
+    "away": "Leeds United",
+    "home": "Arsenal",
+    "week": 33
+  },
+  {
+    "away": "Everton",
+    "home": "Sunderland",
+    "week": 33
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Hull City",
+    "week": 33
+  },
+  {
+    "away": "Brentford",
+    "home": "Manchester United",
+    "week": 33
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Bournemouth",
+    "week": 33
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Everton",
+    "week": 34
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Newcastle United",
+    "week": 34
+  },
+  {
+    "away": "Sunderland",
+    "home": "Leeds United",
+    "week": 34
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Ipswich Town",
+    "week": 34
+  },
+  {
+    "away": "Manchester United",
+    "home": "Coventry City",
+    "week": 34
+  },
+  {
+    "away": "Fulham",
+    "home": "Chelsea",
+    "week": 34
+  },
+  {
+    "away": "Hull City",
+    "home": "Aston Villa",
+    "week": 34
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Nottingham Forest",
+    "week": 34
+  },
+  {
+    "away": "Arsenal",
+    "home": "Manchester City",
+    "week": 34
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Brentford",
+    "week": 34
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Tottenham Hotspur",
+    "week": 35
+  },
+  {
+    "away": "Manchester City",
+    "home": "Sunderland",
+    "week": 35
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Hull City",
+    "week": 35
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Arsenal",
+    "week": 35
+  },
+  {
+    "away": "Everton",
+    "home": "Fulham",
+    "week": 35
+  },
+  {
+    "away": "Coventry City",
+    "home": "Brighton and Hove Albion",
+    "week": 35
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Manchester United",
+    "week": 35
+  },
+  {
+    "away": "Brentford",
+    "home": "Aston Villa",
+    "week": 35
+  },
+  {
+    "away": "Leeds United",
+    "home": "Crystal Palace",
+    "week": 35
+  },
+  {
+    "away": "Chelsea",
+    "home": "Liverpool FC",
+    "week": 35
+  },
+  {
+    "away": "Hull City",
+    "home": "Brentford",
+    "week": 36
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Everton",
+    "week": 36
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Manchester City",
+    "week": 36
+  },
+  {
+    "away": "Manchester United",
+    "home": "Chelsea",
+    "week": 36
+  },
+  {
+    "away": "Sunderland",
+    "home": "Newcastle United",
+    "week": 36
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Coventry City",
+    "week": 36
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Bournemouth",
+    "week": 36
+  },
+  {
+    "away": "Fulham",
+    "home": "Leeds United",
+    "week": 36
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Nottingham Forest",
+    "week": 36
+  },
+  {
+    "away": "Arsenal",
+    "home": "Ipswich Town",
+    "week": 36
+  },
+  {
+    "away": "Chelsea",
+    "home": "Brighton and Hove Albion",
+    "week": 37
+  },
+  {
+    "away": "Everton",
+    "home": "Manchester United",
+    "week": 37
+  },
+  {
+    "away": "Manchester City",
+    "home": "Fulham",
+    "week": 37
+  },
+  {
+    "away": "Coventry City",
+    "home": "Brentford",
+    "week": 37
+  },
+  {
+    "away": "Newcastle United",
+    "home": "Crystal Palace",
+    "week": 37
+  },
+  {
+    "away": "Leeds United",
+    "home": "Liverpool FC",
+    "week": 37
+  },
+  {
+    "away": "Ipswich Town",
+    "home": "Sunderland",
+    "week": 37
+  },
+  {
+    "away": "Tottenham Hotspur",
+    "home": "Hull City",
+    "week": 37
+  },
+  {
+    "away": "Nottingham Forest",
+    "home": "Aston Villa",
+    "week": 37
+  },
+  {
+    "away": "Bournemouth",
+    "home": "Arsenal",
+    "week": 37
+  },
+  {
+    "away": "Hull City",
+    "home": "Coventry City",
+    "week": 38
+  },
+  {
+    "away": "Sunderland",
+    "home": "Bournemouth",
+    "week": 38
+  },
+  {
+    "away": "Liverpool FC",
+    "home": "Manchester City",
+    "week": 38
+  },
+  {
+    "away": "Aston Villa",
+    "home": "Chelsea",
+    "week": 38
+  },
+  {
+    "away": "Arsenal",
+    "home": "Tottenham Hotspur",
+    "week": 38
+  },
+  {
+    "away": "Brighton and Hove Albion",
+    "home": "Everton",
+    "week": 38
+  },
+  {
+    "away": "Manchester United",
+    "home": "Leeds United",
+    "week": 38
+  },
+  {
+    "away": "Fulham",
+    "home": "Newcastle United",
+    "week": 38
+  },
+  {
+    "away": "Crystal Palace",
+    "home": "Ipswich Town",
+    "week": 38
+  },
+  {
+    "away": "Brentford",
+    "home": "Nottingham Forest",
+    "week": 38
+  }
+]

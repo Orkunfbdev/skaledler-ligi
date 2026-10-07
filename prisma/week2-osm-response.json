@@ -1,0 +1,132 @@
+[
+  {
+    "id": "260029825_1_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 15,
+    "awayTeamId": 8,
+    "homeGoals": 0,
+    "awayGoals": 2,
+    "matchData": {
+      "id": 387462168
+    }
+  },
+  {
+    "id": "260029825_2_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 11,
+    "awayTeamId": 12,
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "matchData": {
+      "id": 387462169
+    }
+  },
+  {
+    "id": "260029825_3_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 13,
+    "awayTeamId": 10,
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "matchData": {
+      "id": 387462170
+    }
+  },
+  {
+    "id": "260029825_4_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 3,
+    "awayTeamId": 1,
+    "homeGoals": 0,
+    "awayGoals": 1,
+    "matchData": {
+      "id": 387462171
+    }
+  },
+  {
+    "id": "260029825_5_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 19,
+    "awayTeamId": 4,
+    "homeGoals": 0,
+    "awayGoals": 2,
+    "matchData": {
+      "id": 387462172
+    }
+  },
+  {
+    "id": "260029825_6_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 17,
+    "awayTeamId": 6,
+    "homeGoals": 3,
+    "awayGoals": 0,
+    "matchData": {
+      "id": 387462173
+    }
+  },
+  {
+    "id": "260029825_7_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 9,
+    "awayTeamId": 14,
+    "homeGoals": 2,
+    "awayGoals": 0,
+    "matchData": {
+      "id": 387462174
+    }
+  },
+  {
+    "id": "260029825_8_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 7,
+    "awayTeamId": 16,
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "matchData": {
+      "id": 387462175
+    }
+  },
+  {
+    "id": "260029825_9_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 5,
+    "awayTeamId": 18,
+    "homeGoals": 3,
+    "awayGoals": 1,
+    "matchData": {
+      "id": 387462176
+    }
+  },
+  {
+    "id": "260029825_10_2",
+    "leagueId": 260029825,
+    "weekNr": 2,
+    "matchType": 0,
+    "homeTeamId": 2,
+    "awayTeamId": 20,
+    "homeGoals": 3,
+    "awayGoals": 0,
+    "matchData": {
+      "id": 387462177
+    }
+  }
+]

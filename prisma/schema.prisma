@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid()) @db.Uuid
+  email         String   @unique
+  password_hash String
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  profile       Profile?
+
+  @@map("users")
+}
+
+model Profile {
+  id               String   @id @db.Uuid
+  username         String   @unique
+  avatar_url       String?
+  balance          Decimal  @default(200) @db.Decimal(12, 2)
+  is_admin         Boolean  @default(false)
+  last_daily_claim String?
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+  user             User     @relation(fields: [id], references: [id], onDelete: Cascade)
+  bets             Bet[]
+  quotes           DailyQuote[]
+  avatar           Avatar?
+
+  @@map("profiles")
+}
+
+model Team {
+  id                String  @id @default(uuid()) @db.Uuid
+  name              String  @unique
+  squad_value       Decimal @default(200) @db.Decimal(12, 2)
+  manager_name      String  @default("Boşta")
+  logo_url          String?
+  home_matches      Match[] @relation("HomeTeam")
+  away_matches      Match[] @relation("AwayTeam")
+  standing          Standing?
+
+  @@map("teams")
+}
+
+model Match {
+  id               String   @id @default(uuid()) @db.Uuid
+  matchday         Int
+  home_team_id     String   @db.Uuid
+  away_team_id     String   @db.Uuid
+  home_score       Int?
+  away_score       Int?
+  is_finished      Boolean  @default(false)
+  odds_home        Decimal  @db.Decimal(10, 2)
+  odds_draw        Decimal  @db.Decimal(10, 2)
+  odds_away        Decimal  @db.Decimal(10, 2)
+  is_banko         Boolean  @default(false)
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+  settled          Boolean  @default(false)
+  osm_match_id     String?  @unique
+  osm_home_team_id String?
+  osm_away_team_id String?
+  home_team        Team     @relation("HomeTeam", fields: [home_team_id], references: [id])
+  away_team        Team     @relation("AwayTeam", fields: [away_team_id], references: [id])
+  bets             Bet[]
+
+  @@index([matchday])
+  @@unique([matchday, home_team_id, away_team_id])
+  @@map("matches")
+}
+
+model Transfer {
+  id            String   @id @default(uuid()) @db.Uuid
+  fingerprint   String   @unique
+  player_name   String
+  from_team     String
+  to_team       String
+  position      String?
+  matchday      Int?
+  market_value  String?
+  fee           String?
+  date_label    String
+  transfer_date DateTime @db.Date
+
+  @@index([transfer_date(sort: Desc)])
+  @@map("transfers")
+}
+
+model Standing {
+  team_id        String   @id @db.Uuid
+  rank           Int
+  played         Int
+  won            Int
+  drawn          Int
+  lost           Int
+  goals_for      Int
+  goals_against  Int
+  points         Int
+  updated_at     DateTime @default(now()) @db.Timestamptz(6)
+  team           Team     @relation(fields: [team_id], references: [id], onDelete: Cascade)
+
+  @@unique([rank])
+  @@map("standings")
+}
+
+model Bet {
+  id            String   @id @default(uuid()) @db.Uuid
+  user_id       String   @db.Uuid
+  match_id      String?  @db.Uuid
+  prediction    String
+  bet_amount    Decimal  @db.Decimal(12, 2)
+  odds          Decimal  @db.Decimal(10, 2)
+  status        String   @default("pending")
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  bet_type      String   @default("single")
+  combo_details Json?
+  profile       Profile  @relation(fields: [user_id], references: [id])
+  match         Match?   @relation(fields: [match_id], references: [id])
+
+  @@index([match_id, status])
+  @@map("bets")
+}
+
+model LeagueSettings {
+  id              Int @id
+  active_matchday Int @default(2)
+
+  @@map("league_settings")
+}
+
+model DailyQuote {
+  id         String  @id @default(uuid()) @db.Uuid
+  user_id    String  @db.Uuid
+  quote      String
+  created_at String
+  profile    Profile @relation(fields: [user_id], references: [id])
+
+  @@unique([user_id, created_at])
+  @@map("daily_quotes")
+}
+
+model Avatar {
+  profile_id String  @id @db.Uuid
+  data       Bytes
+  mime       String
+  profile    Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+
+  @@map("avatars")
+}

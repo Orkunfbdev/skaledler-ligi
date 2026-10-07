@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Arsenal",
+    "squad_value": 377,
+    "manager_name": "theia",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3e9946-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622920"
+  },
+  {
+    "name": "Aston Villa",
+    "squad_value": 215,
+    "manager_name": "veremettin aqyunanoglou",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3eaba6-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622930"
+  },
+  {
+    "name": "Bournemouth",
+    "squad_value": 326,
+    "manager_name": "SharpeiDayı",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3e9a37-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622933"
+  },
+  {
+    "name": "Brentford",
+    "squad_value": 218,
+    "manager_name": "Laufeyson0",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e388271-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622935"
+  },
+  {
+    "name": "Brighton and Hove Albion",
+    "squad_value": 263,
+    "manager_name": "SİR TARUA FERGUSON",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ea819-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622938"
+  },
+  {
+    "name": "Chelsea",
+    "squad_value": 311,
+    "manager_name": "abaziko",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3e9aa0-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622945"
+  },
+  {
+    "name": "Coventry City",
+    "squad_value": 134,
+    "manager_name": "Boşta",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3894b5-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1786354324"
+  },
+  {
+    "name": "Crystal Palace",
+    "squad_value": 252,
+    "manager_name": "CrystalManager",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3e9b02-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622947"
+  },
+  {
+    "name": "Everton",
+    "squad_value": 131,
+    "manager_name": "Boşta",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3e9b8c-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622950"
+  },
+  {
+    "name": "Fulham",
+    "squad_value": 218,
+    "manager_name": "Thoran22",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e38853a-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622952"
+  },
+  {
+    "name": "Hull City",
+    "squad_value": 134,
+    "manager_name": "Boşta",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3882d2-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1786371671"
+  },
+  {
+    "name": "Ipswich Town",
+    "squad_value": 154,
+    "manager_name": "Boşta",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3892b0-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1786354331"
+  },
+  {
+    "name": "Leeds United",
+    "squad_value": 275,
+    "manager_name": "ARDARDAV",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e38859b-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1752481897"
+  },
+  {
+    "name": "Liverpool FC",
+    "squad_value": 260,
+    "manager_name": "pompaberat3169",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ea668-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1727874830"
+  },
+  {
+    "name": "Manchester City",
+    "squad_value": 386,
+    "manager_name": "dümbelek Erkan",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ea6e8-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1729149069"
+  },
+  {
+    "name": "Manchester United",
+    "squad_value": 296,
+    "manager_name": "malcolmqq",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ea74c-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622971"
+  },
+  {
+    "name": "Newcastle United",
+    "squad_value": 263,
+    "manager_name": "Chunlies",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ea7b2-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622973"
+  },
+  {
+    "name": "Nottingham Forest",
+    "squad_value": 195,
+    "manager_name": "erkott",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e388d6e-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622979"
+  },
+  {
+    "name": "Sunderland",
+    "squad_value": 145,
+    "manager_name": "Boşta",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e389814-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1752481912"
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "squad_value": 272,
+    "manager_name": "furkanbaba31_0",
+    "logo_url": "https://assets.onlinesoccermanager.com/Team/Normal/0e3ead9b-a3fe-11ea-ae92-a0369f7ecc2c.png?v=1657622985"
+  }
+]
