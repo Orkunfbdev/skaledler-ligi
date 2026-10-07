@@ -239,22 +239,8 @@ export default function Home() {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (isSignUp) {
-      const { error } = await api.auth.signUp({
-        email,
-        password,
-        options: { data: { username, adminCode } }
-      });
-      if (error) alert(error.message);
-      else {
-        alert('Menajer kaydınız oluşturuldu!');
-        setIsSignUp(false);
-        fetchData();
-      }
-    } else {
-      const { error } = await api.auth.signInWithPassword({ email, password });
-      if (error) alert('Giriş başarısız: ' + error.message);
-    }
+    const { error } = await api.auth.signInWithPassword({ email, password });
+    if (error) alert('Giriş başarısız: ' + error.message);
   };
 
   const handleFileUpload = async (event) => {
@@ -751,19 +737,12 @@ export default function Home() {
             </div>
 
             <div className="w-full bg-[#16181c]/90 backdrop-blur-md border border-[#2f3336] p-7 pt-9 rounded-3xl shadow-2xl space-y-4 -mt-10 relative z-20">
+              <div className="text-center pb-1">
+                <h1 className="text-sm font-bold text-white font-mono uppercase tracking-wider">Menajer Girişi</h1>
+                <p className="text-[11px] text-[#71767b] mt-0.5 font-mono">Skaledler OSM Ligi</p>
+              </div>
+
               <form onSubmit={handleAuth} className="space-y-3.5">
-                {isSignUp && (
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Menajer Adı (Nick)"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                      className="w-full bg-black border border-[#2f3336] px-4 py-3 rounded-xl text-xs text-white focus:outline-none focus:border-white transition"
-                      required
-                    />
-                  </div>
-                )}
                 <div>
                   <input
                     type="email"
@@ -789,19 +768,15 @@ export default function Home() {
                   type="submit"
                   className="w-full bg-white hover:bg-neutral-200 text-black font-black py-3.5 rounded-xl text-xs uppercase font-mono tracking-wider transition shadow-lg mt-2 active:scale-95"
                 >
-                  {isSignUp ? 'Kayıt Ol' : 'Giriş Yap'}
+                  Giriş Yap
                 </button>
               </form>
 
-              <div className="pt-2 text-center space-y-2.5">
-                <button
-                  type="button"
-                  onClick={() => setIsSignUp(!isSignUp)}
-                  className="text-xs text-[#71767b] hover:text-white transition"
-                >
-                  {isSignUp ? 'Zaten hesabın var mı? ' : 'Hesabın yok mu? '}
-                  <strong className="text-white underline">{isSignUp ? 'Giriş Yap' : 'Kayıt Ol'}</strong>
-                </button>
+              <div className="pt-2 text-center border-t border-[#2f3336]/40">
+                <span className="inline-flex items-center gap-1.5 text-[10px] text-[#71767b] font-mono">
+                  <span>🔒</span>
+                  <span>Yalnızca kayıtlı lig menajerlerine özeldir</span>
+                </span>
               </div>
             </div>
 
@@ -916,7 +891,7 @@ export default function Home() {
                 onClick={() => setActiveTab('bulten')}
                 className={`flex-1 py-3 text-center transition border-b-2 ${activeTab === 'bulten' ? 'border-white text-white' : 'border-transparent text-[#71767b] hover:text-white'}`}
               >
-                BÜLTEN ({currentWeek}. HAFTA)
+                HAFTANIN MAÇLARI ({currentWeek}. HAFTA)
               </button>
               <button
                 onClick={() => setActiveTab('ongoruler')}
@@ -952,7 +927,7 @@ export default function Home() {
                     <span className="text-[#71767b] flex items-center gap-1.5">
                       <span>📢</span>
                       <span>
-                        <strong className="text-white">{currentWeek - 1}. Hafta</strong> puanları dağıtıldı. Şu an <strong className="text-emerald-400 font-bold">{currentWeek}. Hafta</strong> bülteni açık!
+                        <strong className="text-white">{currentWeek - 1}. Hafta</strong> puanları dağıtıldı. Şu an <strong className="text-emerald-400 font-bold">{currentWeek}. Hafta</strong> maçları yayında!
                       </span>
                     </span>
                     <button
@@ -980,7 +955,7 @@ export default function Home() {
                           <span className="text-[10px] font-mono text-[#71767b] uppercase">{m.matchday}. HAFTA</span>
                           {m.is_banko && (
                             <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-white text-black font-bold">
-                              ⭐ GÜNÜN BANKOSU
+                              ⭐ HAFTANIN DERBİSİ
                             </span>
                           )}
                         </div>

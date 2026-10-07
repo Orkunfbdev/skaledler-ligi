@@ -37,34 +37,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Geçerli e-posta ve en az 8 karakterli şifre girin.' }, { status: 400 });
     }
     if (body.action === 'signup') {
-      const username = String(body.username || '').trim();
-      if (username.length < 3 || username.length > 24) {
-        return NextResponse.json({ error: 'Kullanıcı adı 3-24 karakter olmalı.' }, { status: 400 });
-      }
-      try {
-        const adminEnv = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-        const isAdminEmail = email === 'admin@gmail.com' || (adminEnv && email === adminEnv);
-
-        await prisma.$transaction(async (tx) => {
-          return await tx.user.create({
-            data: {
-              email,
-              password_hash: hashPassword(password),
-              profile: {
-                create: {
-                  username,
-                  is_admin: isAdminEmail,
-                  balance: 1000,
-                },
-              },
-            },
-          });
-        });
-        return NextResponse.json({ ok: true });
-      } catch (error) {
-        if (error.code === 'P2002') return NextResponse.json({ error: 'E-posta veya kullanıcı adı zaten kayıtlı.' }, { status: 409 });
-        throw error;
-      }
+      return NextResponse.json({ error: 'Yeni menajer kayıtları kapalıdır. Yalnızca lig menajerleri giriş yapabilir.' }, { status: 403 });
     }
     if (body.action === 'signin') {
       let user = await prisma.user.findUnique({ where: { email }, include: { profile: true } });

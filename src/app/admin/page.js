@@ -812,7 +812,7 @@ export default function AdminPage() {
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
-                ⚡ Öngörüler & Bahis Durumu Kontrolü
+                ⚡ Tahmin / Öngörü Durumu Kontrolü
               </h2>
               <span
                 className={`text-[11px] font-mono px-3 py-1 rounded-full font-bold border flex items-center gap-1.5 ${
@@ -890,7 +890,7 @@ export default function AdminPage() {
       <div className="bg-emerald-950/20 border border-emerald-500/30 p-5 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-bold text-white font-mono uppercase">📢 Bülten Yayındaki Hafta</h2>
+            <h2 className="text-sm font-bold text-white font-mono uppercase">📢 Yayındaki Maç Haftası</h2>
             <span className="text-[10px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full font-bold">
               Canlıda {activeMatchday}. Hafta Yayında
             </span>
@@ -904,7 +904,7 @@ export default function AdminPage() {
           <button
             onClick={() => handleAdvanceToNextMatchday(activeMatchday)}
             className="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold font-mono transition shadow-lg flex items-center gap-1.5 active:scale-95"
-            title="Önceki haftanın puanlarını dağıtılmış sayar ve sonraki haftayı bültene açar"
+            title="Önceki haftanın puanlarını dağıtılmış sayar ve sonraki haftayı yayına açar"
           >
             ⏩ {activeMatchday}. Hafta Dağıtıldı, {Number(activeMatchday) + 1}. Haftaya Geç
           </button>
@@ -1448,7 +1448,7 @@ export default function AdminPage() {
                   {matchday}. HAFTANIN TÜM PUANLARI DAĞITILDI!
                 </div>
                 <div className="text-[11px] text-emerald-400 font-mono">
-                  Bu haftanın tüm maçları tamamlandı. {Number(matchday) + 1}. haftayı bültene açıp menajerlerin öngörüsüne sunabilirsiniz.
+                  Bu haftanın tüm maçları tamamlandı. {Number(matchday) + 1}. haftayı yayına açıp menajerlerin öngörüsüne sunabilirsiniz.
                 </div>
               </div>
             </div>
@@ -1456,7 +1456,7 @@ export default function AdminPage() {
               onClick={() => handleAdvanceToNextMatchday(matchday)}
               className="bg-emerald-500 hover:bg-emerald-400 text-black px-4 py-2 rounded-xl text-xs font-bold font-mono transition shadow-lg flex items-center gap-1.5 whitespace-nowrap active:scale-95"
             >
-              ⏩ {matchday}. Hafta Dağıtıldı → {Number(matchday) + 1}. Haftaya Geç & Bülteni Aç
+              ⏩ {matchday}. Hafta Dağıtıldı → {Number(matchday) + 1}. Haftaya Geç & Maçları Aç
             </button>
           </div>
         )}
@@ -1590,7 +1590,7 @@ export default function AdminPage() {
                     onClick={() => toggleBanko(m.id, m.is_banko)}
                     className={`px-2 py-1.5 rounded text-[10px] font-mono border ${m.is_banko ? 'bg-amber-500/20 text-amber-300 border-amber-500' : 'bg-black text-[#71767b] border-[#2f3336]'}`}
                   >
-                    {m.is_banko ? '⭐ Banko' : 'Banko Yap'}
+                    {m.is_banko ? '⭐ Derbi Maçı' : 'Derbi Yap'}
                   </button>
                   <button
                     onClick={() => handleDeleteMatch(m.id)}
