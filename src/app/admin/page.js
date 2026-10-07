@@ -197,7 +197,7 @@ export default function AdminPage() {
       return;
     }
     await fetchLeagueSettings();
-    showNotice('🟢 Öngörüler başarıyla geri aktifleştirildi! Menajerler artık saat 18:00 sonrasında da yeni tahmin yapabilir.');
+    showNotice('🟢 Öngörüler başarıyla geri aktifleştirildi! Menajerler artık saat 18:00 sonrasında da yeni öngörü yapabilir.');
   };
 
   const handleLockPredictions = async () => {
@@ -210,7 +210,7 @@ export default function AdminPage() {
       return;
     }
     await fetchLeagueSettings();
-    showNotice('🔒 Öngörüler kilitlendi (kapatıldı). Menajerler yeni tahmin yapamaz.');
+    showNotice('🔒 Öngörüler kilitlendi (kapatıldı). Menajerler yeni öngörü yapamaz.');
   };
 
   const handleResetToAutoPredictions = async () => {
@@ -812,7 +812,7 @@ export default function AdminPage() {
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
-                ⚡ Tahmin / Öngörü Durumu Kontrolü
+                ⚡ Öngörü Durumu Kontrolü
               </h2>
               <span
                 className={`text-[11px] font-mono px-3 py-1 rounded-full font-bold border flex items-center gap-1.5 ${
@@ -861,7 +861,7 @@ export default function AdminPage() {
             <button
               onClick={handleLockPredictions}
               className="bg-red-950/60 hover:bg-red-900 border border-red-800 text-red-300 hover:text-white px-3.5 py-2 rounded-xl text-xs font-bold font-mono transition flex items-center gap-1.5 active:scale-95"
-              title="Menajerlerin yeni tahmin yapmasını hemen engeller"
+              title="Menajerlerin yeni öngörü yapmasını hemen engeller"
             >
               🔴 Öngörüleri Kilitle (Kapat)
             </button>
