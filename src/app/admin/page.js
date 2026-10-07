@@ -943,7 +943,7 @@ export default function AdminPage() {
                 <div>
                   <span className="font-bold text-white">@{b.profile?.username}</span>
                   <span className="text-[#71767b] ml-2">
-                    {b.match?.matchday}. Hafta: {b.match?.home_team?.name} vs {b.match?.away_team?.name} (MS {b.prediction})
+                    {b.match?.matchday}. Hafta: {b.match?.home_team?.name} vs {b.match?.away_team?.name} ({b.prediction === '1' ? 'Kazanır' : b.prediction === '0' ? 'Berabere' : b.prediction === '2' ? 'Kaybeder' : b.prediction})
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
@@ -1075,14 +1075,10 @@ export default function AdminPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <span className="text-[11px] text-white font-mono uppercase tracking-wider font-bold">
-                Kayıtlı Menajerler ({profilesList.length}/16)
+                Kayıtlı Menajerler ({profilesList.length})
               </span>
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono ${
-                profilesList.length >= 16 
-                  ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
-                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-              }`}>
-                {profilesList.length >= 16 ? 'Kontenjan Dolu' : `${16 - profilesList.length} Kontenjan Açık`}
+              <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                {profilesList.length} Aktif Menajer
               </span>
             </div>
             <input

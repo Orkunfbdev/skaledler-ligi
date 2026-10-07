@@ -12,7 +12,7 @@ export async function GET(request) {
     return NextResponse.json({
       user: user ? { id: user.id, email: user.email } : null,
       userCount,
-      isRegistrationClosed: userCount >= 16,
+      isRegistrationClosed: false,
     });
   } catch (error) {
     console.error('Auth GET error:', error);
@@ -46,10 +46,6 @@ export async function POST(request) {
         const isAdminEmail = email === 'admin@gmail.com' || (adminEnv && email === adminEnv);
 
         await prisma.$transaction(async (tx) => {
-          const currentCount = await tx.user.count();
-          if (currentCount >= 16) {
-            throw new Error('QUOTA_FULL');
-          }
           return await tx.user.create({
             data: {
               email,
@@ -66,9 +62,6 @@ export async function POST(request) {
         });
         return NextResponse.json({ ok: true });
       } catch (error) {
-        if (error.message === 'QUOTA_FULL') {
-          return NextResponse.json({ error: 'Kayıtlar kapanmıştır. Maksimum 16 menajer kontenjanına ulaşılmıştır.' }, { status: 403 });
-        }
         if (error.code === 'P2002') return NextResponse.json({ error: 'E-posta veya kullanıcı adı zaten kayıtlı.' }, { status: 409 });
         throw error;
       }
