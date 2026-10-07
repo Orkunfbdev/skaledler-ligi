@@ -62,6 +62,7 @@ export default function AdminPage() {
 
   // Skor State
   const [scores, setScores] = useState({});
+  const [isSubmittingBatch, setIsSubmittingBatch] = useState(false);
 
   useEffect(() => {
     checkAdminSession();
@@ -541,6 +542,81 @@ export default function AdminPage() {
     fetchMatches();
     fetchBets();
     fetchProfiles();
+  };
+
+  const handleBatchSettleMatches = async () => {
+    const unfinished = matches.filter((m) => !m.is_finished);
+    const matchesToSettle = [];
+
+    for (const m of unfinished) {
+      const s = scores[m.id];
+      if (s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '') {
+        const h = Number(s.home);
+        const a = Number(s.away);
+        if (Number.isInteger(h) && Number.isInteger(a) && h >= 0 && a >= 0) {
+          matchesToSettle.push({ match: m, home: h, away: a });
+        }
+      }
+    }
+
+    if (matchesToSettle.length === 0) {
+      showNotice('Lütfen puanlarını dağıtmak istediğiniz maçların ev ve deplasman skorlarını girin.');
+      return;
+    }
+
+    const summaryList = matchesToSettle
+      .map(
+        (item) =>
+          `⚽ ${item.match.home_team?.name} ${item.home} - ${item.away} ${item.match.away_team?.name}`
+      )
+      .join('\n');
+
+    showConfirm(
+      `Toplam ${matchesToSettle.length} maçın skoru sisteme işlenecek ve tüm kupon puanları tek seferde dağıtılacak:\n\n${summaryList}\n\nİşlemi onaylıyor musunuz?`,
+      async () => {
+        setIsSubmittingBatch(true);
+        let successCount = 0;
+        let errors = [];
+
+        for (const item of matchesToSettle) {
+          try {
+            const { data: settled, error } = await api.rpc('admin_settle_match', {
+              p_match_id: item.match.id,
+              p_home_score: item.home,
+              p_away_score: item.away,
+            });
+            if (error) {
+              errors.push(`${item.match.home_team?.name} - ${item.match.away_team?.name}: ${error.message}`);
+            } else if (settled) {
+              successCount++;
+            }
+          } catch (err) {
+            errors.push(`${item.match.home_team?.name} - ${item.match.away_team?.name}: ${err.message}`);
+          }
+        }
+
+        const { data: settings } = await api.from('league_settings').select('*').eq('id', 1).single();
+        if (settings) {
+          setLeagueSettings(settings);
+          if (settings.active_matchday) {
+            setActiveMatchday(Number(settings.active_matchday));
+          }
+        }
+
+        await fetchMatches();
+        await fetchBets();
+        await fetchProfiles();
+        setIsSubmittingBatch(false);
+
+        if (errors.length > 0) {
+          showNotice(`⚠️ ${successCount} maç tamamlandı. Bazı maçlarda hata:\n` + errors.join('\n'));
+        } else if (settings?.active_matchday > matchday) {
+          showNotice(`🎉 Harika! ${successCount} maçın skoru kaydedildi, puanlar başarıyla dağıtıldı!\n📢 ${matchday}. Hafta bitti, ${settings.active_matchday}. Hafta bültene yayınlandı.`);
+        } else {
+          showNotice(`🎉 Harika! ${successCount} maçın skoru kaydedildi ve tüm puanlar tek seferde başarıyla dağıtıldı!`);
+        }
+      }
+    );
   };
 
   const usedTeamIdsInMatchday = matches.reduce((acc, m) => {
@@ -1389,6 +1465,70 @@ export default function AdminPage() {
           </div>
         )}
         
+        {/* Toplu Skor Dağıtım Banner'ı */}
+        {matches.some((m) => !m.is_finished) && (
+          <div className="bg-gradient-to-r from-emerald-950/40 via-black to-emerald-950/40 border border-emerald-500/30 p-3.5 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-3 shadow-lg">
+            <div className="flex items-center gap-2.5">
+              <span className="text-xl">⚡</span>
+              <div>
+                <span className="text-xs font-bold text-white font-mono block">
+                  Toplu Skor Girişi & Puan Dağıtımı
+                </span>
+                <span className="text-[11px] text-[#71767b] font-mono">
+                  {(() => {
+                    const ready = matches.filter((m) => {
+                      if (m.is_finished) return false;
+                      const s = scores[m.id];
+                      return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                    }).length;
+                    const totalUnfinished = matches.filter((m) => !m.is_finished).length;
+                    return ready > 0
+                      ? `${ready} / ${totalUnfinished} maçın skoru hazırlandı. Butona basarak tek onayda hepsini dağıtabilirsiniz.`
+                      : 'Skorları kutucuklara yazın, ardından tek tıkla topluca puanları dağıtın.';
+                  })()}
+                </span>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              disabled={
+                isSubmittingBatch ||
+                matches.filter((m) => {
+                  if (m.is_finished) return false;
+                  const s = scores[m.id];
+                  return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                }).length === 0
+              }
+              onClick={handleBatchSettleMatches}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold font-mono transition shadow-lg flex items-center gap-2 whitespace-nowrap active:scale-95 ${
+                matches.some((m) => {
+                  if (m.is_finished) return false;
+                  const s = scores[m.id];
+                  return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                })
+                  ? 'bg-emerald-500 hover:bg-emerald-400 text-black font-bold animate-pulse'
+                  : 'bg-neutral-800 text-[#71767b] border border-[#2f3336] cursor-not-allowed opacity-60'
+              }`}
+            >
+              {isSubmittingBatch ? (
+                <>⏳ Puanlar Dağıtılıyor...</>
+              ) : (
+                <>
+                  🚀 {(() => {
+                    const count = matches.filter((m) => {
+                      if (m.is_finished) return false;
+                      const s = scores[m.id];
+                      return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                    }).length;
+                    return count > 0 ? `Tümünü Onayla & Dağıt (${count} Maç)` : 'Tüm Skorları Onayla & Dağıt';
+                  })()}
+                </>
+              )}
+            </button>
+          </div>
+        )}
+        
         {matches.length === 0 ? (
           <p className="text-xs text-[#71767b]">Bu haftaya ait maç bulunmuyor.</p>
         ) : (
@@ -1425,7 +1565,8 @@ export default function AdminPage() {
                   <input
                     type="number"
                     placeholder="Ev"
-                    className="w-12 bg-black border border-[#2f3336] p-1.5 rounded text-center text-white font-mono"
+                    value={scores[m.id]?.home ?? ''}
+                    className="w-12 bg-black border border-[#2f3336] focus:border-emerald-500 focus:outline-none p-1.5 rounded text-center text-white font-mono"
                     onChange={(e) => setScores(prev => ({
                       ...prev,
                       [m.id]: { ...prev[m.id], home: e.target.value }
@@ -1435,7 +1576,8 @@ export default function AdminPage() {
                   <input
                     type="number"
                     placeholder="Dep"
-                    className="w-12 bg-black border border-[#2f3336] p-1.5 rounded text-center text-white font-mono"
+                    value={scores[m.id]?.away ?? ''}
+                    className="w-12 bg-black border border-[#2f3336] focus:border-emerald-500 focus:outline-none p-1.5 rounded text-center text-white font-mono"
                     onChange={(e) => setScores(prev => ({
                       ...prev,
                       [m.id]: { ...prev[m.id], away: e.target.value }
@@ -1443,9 +1585,10 @@ export default function AdminPage() {
                   />
                   <button
                     onClick={() => handleSettleMatch(m)}
-                    className="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded font-bold font-mono text-[11px]"
+                    className="bg-neutral-800 hover:bg-emerald-600 text-[#71767b] hover:text-white border border-[#2f3336] px-2.5 py-1.5 rounded font-bold font-mono text-[11px] transition"
+                    title="Tek bu maçın puanını dağıt"
                   >
-                    Puan Dağıt
+                    Tek Dağıt
                   </button>
                   <button
                     onClick={() => toggleBanko(m.id, m.is_banko)}
@@ -1464,6 +1607,51 @@ export default function AdminPage() {
               )}
             </div>
           ))
+        )}
+
+        {/* Alt Toplu Dağıtım Butonu */}
+        {matches.some((m) => !m.is_finished) && (
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#2f3336]/40">
+            <span className="text-[11px] text-[#71767b] font-mono">
+              💡 İpucu: Tüm skorları kutulara doldurduktan sonra aşağıdaki butona tıklayarak tek seferde onaylayıp bitirebilirsiniz.
+            </span>
+            <button
+              type="button"
+              disabled={
+                isSubmittingBatch ||
+                matches.filter((m) => {
+                  if (m.is_finished) return false;
+                  const s = scores[m.id];
+                  return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                }).length === 0
+              }
+              onClick={handleBatchSettleMatches}
+              className={`w-full sm:w-auto px-5 py-2.5 rounded-xl text-xs font-bold font-mono transition shadow-xl flex items-center justify-center gap-2 active:scale-95 ${
+                matches.some((m) => {
+                  if (m.is_finished) return false;
+                  const s = scores[m.id];
+                  return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                })
+                  ? 'bg-emerald-500 hover:bg-emerald-400 text-black font-bold'
+                  : 'bg-neutral-800 text-[#71767b] border border-[#2f3336] cursor-not-allowed opacity-60'
+              }`}
+            >
+              {isSubmittingBatch ? (
+                <>⏳ Puanlar Dağıtılıyor...</>
+              ) : (
+                <>
+                  🚀 {(() => {
+                    const count = matches.filter((m) => {
+                      if (m.is_finished) return false;
+                      const s = scores[m.id];
+                      return s && s.home !== undefined && s.home !== '' && s.away !== undefined && s.away !== '';
+                    }).length;
+                    return count > 0 ? `Girilen ${count} Maçın Puanını Tek Seferde Dağıt` : 'Skorları Girin ve Toplu Dağıtın';
+                  })()}
+                </>
+              )}
+            </button>
+          </div>
         )}
       </div>
     </div>
