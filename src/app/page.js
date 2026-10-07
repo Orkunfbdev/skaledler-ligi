@@ -778,6 +778,9 @@ export default function Home() {
               </div>
             </div>
 
+            <p className="text-[11px] text-[#71767b] text-center max-w-xs mt-3 leading-normal">
+              🎮 Bu platform arkadaşlar arası eğlence amaçlı bir tahmin ligidir. Gerçek para yatırma veya çekme kesinlikle yoktur.
+            </p>
           </div>
         </div>
       ) : (
